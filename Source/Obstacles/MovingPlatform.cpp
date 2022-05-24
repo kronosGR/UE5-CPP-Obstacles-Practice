@@ -52,11 +52,13 @@ void AMovingPlatform::MovePlatform(float DeltaTime) {
 	}
 }
 
-bool AMovingPlatform::ShouldPlatformReturn() {
+// pure - cannot modify something
+bool AMovingPlatform::ShouldPlatformReturn() const {
 	return GetDistanceMoved() > MoveDistance;
 }
 
-float AMovingPlatform::GetDistanceMoved() {
+// pure
+float AMovingPlatform::GetDistanceMoved() const {
 	return FVector::Dist(StartLocation, GetActorLocation());
 }
 
