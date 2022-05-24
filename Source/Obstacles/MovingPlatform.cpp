@@ -27,13 +27,23 @@ void AMovingPlatform::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	MovePlatform(DeltaTime);
+	RotatePlatform(DeltaTime);
 
+	
+}
+
+void AMovingPlatform::RotatePlatform(float DeltaTime) {
+	UE_LOG(LogTemp, Display, TEXT("%s Rotating..."), *GetName());
+}
+
+void AMovingPlatform::MovePlatform(float DeltaTime) {
 	FVector CurrentLocation = GetActorLocation();
 	CurrentLocation += PlatformVelocity * DeltaTime;
 
 	SetActorLocation(CurrentLocation);
 
-    float DistanceMoved = FVector::Dist(StartLocation, CurrentLocation);
+	float DistanceMoved = FVector::Dist(StartLocation, CurrentLocation);
 
 	if (DistanceMoved >= MoveDistance) {
 		float OverShoot = DistanceMoved - MoveDistance;
